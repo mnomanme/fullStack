@@ -30,6 +30,16 @@ async function run() {
 			res.send(users);
 		});
 
+		// UPDATE API
+		app.get('/users/:id', async (req, res) => {
+			const id = req.params.id;
+			const query = { _id: ObjectId(id) };
+			const user = await usersCollection.findOne(query);
+
+			console.log('load users with id', id);
+			res.send(user);
+		});
+
 		// POST API
 		app.post('/users', async (req, res) => {
 			console.log('Post is hitting', req.body);
