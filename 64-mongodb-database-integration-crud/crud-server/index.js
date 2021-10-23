@@ -1,12 +1,14 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
+const cors = require('cors');
 
 const app = express();
-const port = 2000;
+const port = 5000;
 
-// const username = `userdb01`;
-// const password = `YXTHAztnnpvyzR53`;
-// const databasename = db1users;
+// middleware
+
+app.use(cors());
+app.use(express.json());
 
 const uri = 'mongodb+srv://userdb01:YXTHAztnnpvyzR53@projectscluster0.xzxby.mongodb.net/db1users?retryWrites=true&w=majority';
 
@@ -23,35 +25,17 @@ async function run() {
 		// POST API
 		app.post('/users', async (req, res) => {
 			console.log('Post is hitting', req.body);
-			res.send('hit the post');
+			const newUser = req.body;
+			const result = await usersCollection.insertOne(newUser);
+			console.log('Get new user', req.body);
+			console.log('Add new user', result);
+			res.json(result);
 		});
-
-		// create a document to insert
-
-		// const doc = {
-		// 	title: 'Learning MongoDB',
-		// 	content: 'No bytes, no problem. Just insert a document, in MongoDB',
-		// };
-
-		// const result = await usersCollection.insertOne(doc);
-
-		// console.log(`A document was inserted with the _id: ${result.insertedId}`);
 	} finally {
-		await client.close();
+		// await client.close();
 	}
 }
 run().catch(console.dir);
-
-// client.connect((err) => {
-// 	const usersCollection = client.db('db1users').collection('users');
-// 	console.log('users database connected');
-
-// 	const user = { name: 'Mohammad Faruque', email: 'faruque@gmail.com', age: 20, phone: '017999999' };
-
-// 	usersCollection.insertOne(user).then(() => {
-// 		console.log('user insert success');
-// 	});
-// });
 
 app.get('/', (req, res) => {
 	res.send('Hello Running my CRUD Server ');
@@ -60,3 +44,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
 	console.log('Running Server on my PORT');
 });
+
+// const username = `userdb01`;
+// const password = `YXTHAztnnpvyzR53`;
+// const databasename = db1users;
