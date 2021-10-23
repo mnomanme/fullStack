@@ -21,16 +21,23 @@ async function run() {
 		await client.connect();
 		console.log('Genius Car database connected ');
 		const database = client.db('db2users');
-		const haiku = database.collection('carmaterials');
-		// create a document to insert
-		const doc = {
-			title: 'Record of a Shriveled Datum',
-			content: 'No bytes, no problem. Just insert a document, in MongoDB',
-		};
-		const result = await haiku.insertOne(doc);
-		console.log(`A document was inserted with the _id: ${result.insertedId}`);
+		const servicesCollection = database.collection('carmaterials');
+
+		//	POST API
+		app.get('/services', async (req, res) => {
+			// create a document to insert
+			const service = {
+				name: 'ENGINE DIAGNOSTIC',
+				price: '300',
+				description: 'Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.',
+				img: 'https://i.ibb.co/dGDkr4v/1.jpg',
+			};
+
+			const result = await servicesCollection.insertOne(service);
+			console.log(`A document was inserted with the _id: ${result.insertedId}`, result);
+		});
 	} finally {
-		await client.close();
+		// await client.close();
 	}
 }
 run().catch(console.dir);
