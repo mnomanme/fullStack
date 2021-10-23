@@ -22,6 +22,13 @@ async function run() {
 
 		console.log('users database connected');
 
+		// GET API
+		app.get('/users', async (req, res) => {
+			const cursors = usersCollection.find({});
+			const users = await cursors.toArray();
+			res.send(users);
+		});
+
 		// POST API
 		app.post('/users', async (req, res) => {
 			console.log('Post is hitting', req.body);
