@@ -22,7 +22,7 @@ const ShopData = () => {
 
 	// get data from database
 	useEffect(() => {
-		fetch(`http://localhost:5000/products`)
+		fetch(`https://store-ema-john.herokuapp.com/products`)
 			.then((res) => res.json())
 			.then((data) => setProducts(data));
 	}, []);
@@ -33,7 +33,7 @@ const ShopData = () => {
 		const productKeys = Object.keys(saveCart);
 
 		const fetchData = async () => {
-			const res = await fetch('http://localhost:5000/productsByKeys', {
+			const res = await fetch('https://store-ema-john.herokuapp.com/productsByKeys', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(productKeys),
