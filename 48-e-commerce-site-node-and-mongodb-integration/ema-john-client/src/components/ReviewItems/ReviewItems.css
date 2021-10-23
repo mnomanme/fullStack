@@ -1,0 +1,17 @@
+.review {
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid lightsalmon;
+}
+
+.itemsPhoto img {
+	height: 150px;
+}
+
+.reviewItem {
+	margin-left: 20px;
+}
+.reviewName {
+	color: #002333;
+	font-weight: 400;
+}

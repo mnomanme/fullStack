@@ -1,0 +1,14 @@
+.shopContainer {
+	display: flex;
+}
+
+.productContainer {
+	width: 70%;
+	text-align: justify;
+	padding-right: 10px;
+	border-right: 1px solid lightsalmon;
+}
+
+.cartContainer {
+	padding-left: 20px;
+}
