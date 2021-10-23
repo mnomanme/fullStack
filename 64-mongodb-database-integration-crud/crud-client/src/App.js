@@ -10,7 +10,7 @@ import { Users } from './components/Users/Users';
 const App = () => {
 	return (
 		<Container>
-			<h2>This is APP</h2>
+			<h2 className="text-center">CRUD Operation</h2>
 			<Router>
 				<Header />
 				<Switch>
