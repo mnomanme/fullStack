@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
 export const AddService = () => {
@@ -6,6 +7,8 @@ export const AddService = () => {
 
 	const onSubmit = (data) => {
 		console.log(data);
+
+		axios.post();
 	};
 
 	return (
