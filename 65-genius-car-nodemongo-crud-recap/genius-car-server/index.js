@@ -1,9 +1,8 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
+const cors = require('cors');
 
 require('dotenv').config();
-
-const cors = require('cors');
 
 const app = express();
 
@@ -24,17 +23,16 @@ async function run() {
 		const servicesCollection = database.collection('carmaterials');
 
 		//	POST API
-		app.get('/services', async (req, res) => {
-			// create a document to insert
-			const service = {
-				name: 'ENGINE DIAGNOSTIC',
-				price: '300',
-				description: 'Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.',
-				img: 'https://i.ibb.co/dGDkr4v/1.jpg',
-			};
+		app.post('/services', async (req, res) => {
+			const service = req.body;
+
+			console.log('Hit the API', service);
 
 			const result = await servicesCollection.insertOne(service);
+
 			console.log(`A document was inserted with the _id: ${result.insertedId}`, result);
+
+			res.json(result);
 		});
 	} finally {
 		// await client.close();
