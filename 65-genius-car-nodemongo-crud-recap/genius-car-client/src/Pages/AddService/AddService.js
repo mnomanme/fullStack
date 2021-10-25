@@ -12,6 +12,7 @@ export const AddService = () => {
 			console.log(res);
 			if (res.data.insertedId) {
 				alert('Data Added Successfully!');
+				reset();
 			}
 		});
 	};
