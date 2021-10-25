@@ -1,7 +1,8 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
-const cors = require('cors');
+const ObjectId = require('mongodb').ObjectId;
 
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -22,6 +23,23 @@ async function run() {
 		const database = client.db('db2users');
 		const servicesCollection = database.collection('carmaterials');
 
+		// GET API
+		app.get('/services', async (req, res) => {
+			const cursor = servicesCollection.find({});
+			const services = await cursor.toArray();
+			res.send(services);
+		});
+
+		// GET SINGLE SERVICE
+		app.get('/services/:id', async (req, res) => {
+			const id = req.params.id;
+			console.log('Getting a single service', id);
+			const ObjectId = require('mongodb').ObjectId;
+			const query = { _id: ObjectId(id) };
+			const service = await servicesCollection.findOne(query);
+
+			res.json(service);
+		});
 		//	POST API
 		app.post('/services', async (req, res) => {
 			const service = req.body;
