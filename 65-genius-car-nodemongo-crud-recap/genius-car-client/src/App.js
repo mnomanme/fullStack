@@ -7,6 +7,7 @@ import Header from './Pages/Shared/Header/Header';
 import AuthProvider from './contexts/AuthProvider';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import { AddService } from './Pages/AddService/AddService';
+import { ManageServices } from './Pages/ManageServices/ManageServices';
 
 const App = () => {
 	return (
@@ -29,6 +30,9 @@ const App = () => {
 						</PrivateRoute>
 						<Route path="/addservice">
 							<AddService />
+						</Route>
+						<Route path="/manageServices">
+							<ManageServices />
 						</Route>
 						<Route path="*">
 							<NotFound />
