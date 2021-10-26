@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Footer = () => {
+const Footer = () => {
 	const footer = {
 		textAlign: 'center',
 		color: 'teal',
@@ -19,3 +19,4 @@ export const Footer = () => {
 		</div>
 	);
 };
+export default Footer;
