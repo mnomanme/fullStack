@@ -8,7 +8,14 @@ export const AddEvents = () => {
 		watch,
 		formState: { errors },
 	} = useForm();
+
 	const onSubmit = (data) => console.log(data);
+
+	const handleImageUpload = (e) => {
+		console.log(e.target.files[0]);
+		const imgData = new FormData();
+		imgData.set('key', '6bc6ba0d735eda3fbf193407b965ff2b');
+	};
 
 	console.log(watch('example')); // watch input value by passing the name of it
 
@@ -16,8 +23,7 @@ export const AddEvents = () => {
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<input defaultValue="test" {...register('example')} />
 			<br />
-			<input {...register('exampleRequired', { required: true })} />
-			{errors.exampleRequired && <span>This field is required</span>}
+			<input name="File" type="file" onChange={handleImageUpload} />
 			<br />
 			<input type="submit" />
 		</form>
